@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>AfriNuts Farm OS - Internal Testing</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: #F5F5F5;
+            color: #5A4D47;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 16px;
+        }
+
+        /* Brand Colors */
+        :root {
+            --primary: #5A7411;
+            --primary-light: #E8F0D6;
+            --accent: #E04E00;
+            --dark-orange: #9C3D10;
+            --secondary: #A0C800;
+            --background: #F5F5F5;
+            --text-dark: #5A4D47;
+            --text-light: #FFFFFF;
+            --warm-grey: #DEDAD4;
+            --navy: #253746;
+            --teal: #00869D;
+            --olive: #698714;
+        }
+
+        /* Mobile-First Typography */
+        h1 { font-size: 28px; }
+        h2 { font-size: 22px; }
+        h3 { font-size: 18px; }
+        p { font-size: 14px; }
+
+        /* Header Section */
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--olive) 100%);
+            border-radius: 16px;
+            padding: 24px 16px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 20px rgba(90, 116, 17, 0.15);
+            text-align: center;
+            color: white;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 2.2em;
+            color: white;
+        }
+
+        .version {
+            background: var(--accent);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 30px;
+            display: inline-block;
+            margin-bottom: 12px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .badge {
+            background: var(--secondary);
+            color: var(--text-dark);
+            padding: 4px 10px;
+            border-radius: 30px;
+            font-size: 12px;
+            display: inline-block;
+            margin: 8px 0;
+        }
+
+        /* Download Card */
+        .download-card {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--olive) 100%);
+            border-radius: 16px;
+            padding: 24px 16px;
+            margin-bottom: 20px;
+            color: white;
+            text-align: center;
+        }
+
+        .download-button {
+            background: white;
+            color: var(--primary);
+            border: none;
+            padding: 14px 28px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            text-decoration: none;
+            display: inline-block;
+            margin: 16px 0;
+            width: 100%;
+            max-width: 280px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .download-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .file-info {
+            font-size: 11px;
+            opacity: 0.8;
+            word-break: break-all;
+        }
+
+        /* Features Grid - Mobile Optimized */
+        .features {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        @media (min-width: 480px) {
+            .features {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 768px) {
+            .features {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.03);
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .feature-icon {
+            font-size: 1.8em;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .feature-card h3 {
+            font-size: 16px;
+            margin-bottom: 6px;
+        }
+
+        .feature-card p {
+            font-size: 13px;
+            color: var(--navy);
+            line-height: 1.4;
+        }
+
+        /* Test Plan Section */
+        .test-plan, .data-tables {
+            background: white;
+            border-radius: 16px;
+            padding: 20px 16px;
+            margin-bottom: 20px;
+        }
+
+        .phase {
+            background: var(--primary-light);
+            border-left: 3px solid var(--primary);
+            padding: 16px;
+            margin: 16px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .phase h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .phase ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .phase li {
+            margin: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 13px;
+        }
+
+        .phase li:before {
+            content: "✓";
+            color: var(--secondary);
+            position: absolute;
+            left: 0;
+        }
+
+        /* Mobile-Optimized Tables */
+        .table-container {
+            overflow-x: auto;
+            margin: 16px -16px;
+            padding: 0 16px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        table {
+            min-width: 600px;
+            border-collapse: collapse;
+            font-size: 13px;
+            background: white;
+        }
+
+        @media (max-width: 480px) {
+            table {
+                min-width: 100%;
+                font-size: 12px;
+            }
+
+            .table-container {
+                margin: 12px -12px;
+                padding: 0 12px;
+            }
+        }
+
+        th {
+            background: var(--primary);
+            color: white;
+            padding: 10px 8px;
+            text-align: left;
+            font-weight: 500;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        td {
+            padding: 8px;
+            border-bottom: 1px solid var(--warm-grey);
+            white-space: nowrap;
+        }
+
+        tr:hover {
+            background: var(--primary-light);
+        }
+
+        .table-caption {
+            color: var(--navy);
+            font-weight: 600;
+            margin-top: 20px;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+
+        /* Timeline - Mobile Optimized */
+        .timeline {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin: 16px 0;
+        }
+
+        @media (min-width: 480px) {
+            .timeline {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (min-width: 768px) {
+            .timeline {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+
+        .timeline-item {
+            text-align: center;
+            padding: 12px 8px;
+            background: var(--warm-grey);
+            border-radius: 8px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .timeline-item .date {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 13px;
+            margin-bottom: 4px;
+        }
+
+        .timeline-item div:last-child {
+            font-size: 12px;
+        }
+
+        /* Success Criteria */
+        .success-box {
+            background: var(--accent);
+            color: white;
+            padding: 16px;
+            border-radius: 12px;
+            margin-top: 16px;
+        }
+
+        .success-box h4 {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .success-box ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        @media (max-width: 480px) {
+            .success-box ul {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .success-box li {
+            margin: 4px 0;
+            font-size: 13px;
+        }
+
+        .success-box i {
+            margin-right: 6px;
+            color: white;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            color: var(--navy);
+            margin-top: 24px;
+            padding: 16px;
+            border-top: 1px solid var(--warm-grey);
+        }
+
+        .footer p {
+            font-size: 12px;
+            margin: 8px 0;
+        }
+
+        .footer a {
+            color: var(--primary);
+            text-decoration: none;
+            margin: 0 8px;
+            font-size: 12px;
+            display: inline-block;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Touch-friendly buttons */
+        button,
+        .download-button,
+        a {
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Spacing helpers */
+        .mb-1 { margin-bottom: 8px; }
+        .mb-2 { margin-bottom: 16px; }
+        .mb-3 { margin-bottom: 24px; }
+        .mt-1 { margin-top: 8px; }
+        .mt-2 { margin-top: 16px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- Header -->
+    <div class="header">
+        <div class="logo">
+            <i class="fas fa-seedling"></i>
+        </div>
+        <h1>AfriNuts Farm OS</h1>
+        <div class="version">Version 1.0.0</div>
+        <div class="badge"><i class="fas fa-flask"></i> Internal Testing</div>
+        <p style="max-width: 600px; margin: 12px auto; opacity: 0.9; font-size: 14px;">
+            Complete farm management for cashew plantations
+        </p>
+    </div>
+
+    <!-- Download Card -->
+    <div class="download-card">
+        <h2 style="margin-bottom: 12px; font-size: 20px;"><i class="fas fa-download"></i> Download for Android</h2>
+        <p style="margin-bottom: 16px; font-size: 13px;"><i class="fas fa-mobile-alt"></i> APK: 8.2 MB | Android 7.0+</p>
+        <a href="https://hamza-hub320.github.io/afrinuts-farm-os/downloads/afrinuts-farm-os-v1.0.apk"
+           class="download-button" download>
+
+            <i class="fas fa-download"></i> Download APK (8.2 MB)
+        </a>
+        <p class="file-info"><i class="fas fa-shield-alt"></i> SHA-256: a1b2c3d4e5f6g7h8i9j0...</p>
+    </div>
+
+    <!-- Features Grid -->
+    <h2 style="color: var(--primary); margin-bottom: 12px; font-size: 20px;">
+        <i class="fas fa-star"></i> Features
+    </h2>
+    <div class="features">
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-cubes"></i></div>
+            <h3>Block Management</h3>
+            <p>35 blocks (A1-E7) with survival rates & dates</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-coins"></i></div>
+            <h3>Financial Tracking</h3>
+            <p>Expenses, revenue & per-block profit</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-users"></i></div>
+            <h3>Team Management</h3>
+            <p>Role-based access (owner/manager/worker)</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-camera"></i></div>
+            <h3>Photo Docs</h3>
+            <p>Attach photos to blocks & tasks</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+            <h3>Analytics</h3>
+            <p>PDF reports & profit dashboard</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+            <h3>Auto-Sync</h3>
+            <p>Offline-first with cloud backup</p>
+        </div>
+    </div>
+
+    <!-- Test Data Section -->
+    <div class="data-tables">
+        <h2 style="color: var(--primary); margin-bottom: 16px; font-size: 20px;">
+            <i class="fas fa-database"></i> Test Data Entry
+        </h2>
+
+        <!-- Phase 2: Block Management -->
+        <div class="phase">
+            <h4><i class="fas fa-cubes"></i> PHASE 2: 35 Blocks (A1-E7)</h4>
+            <p style="font-size: 13px; margin-bottom: 10px;">Stagger planting dates by row:</p>
+            <div class="table-container">
+                <table>
+                    <tr><th>Row</th><th>Blocks</th><th>Status</th><th>Planting</th></tr>
+                    <tr><td>A</td><td>A1-A7</td><td>Planted</td><td>Week 1</td></tr>
+                    <tr><td>B</td><td>B1-B7</td><td>Planted</td><td>Week 2</td></tr>
+                    <tr><td>C</td><td>C1-C7</td><td>Planted</td><td>Week 3</td></tr>
+                    <tr><td>D</td><td>D1-D7</td><td>Planted</td><td>Week 4</td></tr>
+                    <tr><td>E</td><td>E1-E7</td><td>Planted</td><td>Week 5</td></tr>
+                </table>
+            </div>
+            <p style="font-size: 12px; margin-top: 8px; color: var(--navy);">
+                <i class="fas fa-info-circle"></i> Survival rate: 95% avg • Replacements: 2-5 per block
+            </p>
+        </div>
+
+        <!-- Phase 3: Expenses -->
+        <div class="phase">
+            <h4><i class="fas fa-coins"></i> PHASE 3: Expenses</h4>
+            <div class="table-container">
+                <table>
+                    <tr><th>Category</th><th>Amount</th><th>Block</th></tr>
+                    <tr><td>Land Clearing</td><td>5,250,000</td><td>Farm-wide</td></tr>
+                    <tr><td>Fencing</td><td>8,500,000</td><td>Farm-wide</td></tr>
+                    <tr><td>Plowing</td><td>2,625,000</td><td>Farm-wide</td></tr>
+                    <tr><td>Seedlings</td><td>10,000,000</td><td>Farm-wide</td></tr>
+                    <tr><td>Security</td><td>3,600,000</td><td>Farm-wide</td></tr>
+                    <tr><td>Labor (Jan)</td><td>1,250,000</td><td>Farm-wide</td></tr>
+                    <tr><td>Labor (Feb)</td><td>1,450,000</td><td>Farm-wide</td></tr>
+                    <tr><td>Labor (Mar)</td><td>1,850,000</td><td>Farm-wide</td></tr>
+                    <tr><td>Fertilizer A1</td><td>250,000</td><td>Block A1</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Phase 4: Revenue -->
+        <div class="phase">
+            <h4><i class="fas fa-chart-line"></i> PHASE 4: Revenue 2026</h4>
+            <div class="table-container">
+                <table>
+                    <tr><th>Blocks</th><th>Harvest</th><th>kg/block</th><th>Price</th><th>Quality</th></tr>
+                    <tr><td>A1-A7</td><td>Apr</td><td>350</td><td>1,500</td><td>Premium</td></tr>
+                    <tr><td>B1-B7</td><td>Apr</td><td>320</td><td>1,500</td><td>Premium</td></tr>
+                    <tr><td>C1-C7</td><td>May</td><td>300</td><td>1,450</td><td>Standard</td></tr>
+                    <tr><td>D1-D7</td><td>May</td><td>280</td><td>1,450</td><td>Standard</td></tr>
+                    <tr><td>E1-E7</td><td>Jun</td><td>250</td><td>1,400</td><td>Standard</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Phase 5: Tasks -->
+        <div class="phase">
+            <h4><i class="fas fa-tasks"></i> PHASE 5: Tasks</h4>
+            <div class="table-container">
+                <table>
+                    <tr><th>Task</th><th>Block</th><th>Assignee</th><th>Frequency</th></tr>
+                    <tr><td>Weeding</td><td>A blocks</td><td>Worker 1</td><td>Weekly</td></tr>
+                    <tr><td>Fertilizing</td><td>B blocks</td><td>Worker 2</td><td>Monthly</td></tr>
+                    <tr><td>Pruning</td><td>C blocks</td><td>Worker 3</td><td>Quarterly</td></tr>
+                    <tr><td>Pest inspect</td><td>D blocks</td><td>Worker 1</td><td>Bi-weekly</td></tr>
+                    <tr><td>Irrigation</td><td>E blocks</td><td>Worker 2</td><td>Daily</td></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Timeline -->
+    <div class="test-plan">
+        <h2 style="color: var(--primary); margin-bottom: 16px; font-size: 20px;">
+            <i class="fas fa-calendar-alt"></i> Testing Timeline
+        </h2>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="date">Week 1</div>
+                <div>Setup & Blocks</div>
+            </div>
+            <div class="timeline-item">
+                <div class="date">Week 2</div>
+                <div>Expenses</div>
+            </div>
+            <div class="timeline-item">
+                <div class="date">Week 3</div>
+                <div>Revenue</div>
+            </div>
+            <div class="timeline-item">
+                <div class="date">Week 4</div>
+                <div>Tasks</div>
+            </div>
+            <div class="timeline-item">
+                <div class="date">Week 5</div>
+                <div>Reports</div>
+            </div>
+        </div>
+
+        <!-- Success Criteria -->
+        <div class="success-box">
+            <h4><i class="fas fa-clipboard-check"></i> Success Criteria</h4>
+            <ul>
+                <li><i class="fas fa-check-circle"></i> All 35 blocks trackable</li>
+                <li><i class="fas fa-check-circle"></i> Expenses match budget</li>
+                <li><i class="fas fa-check-circle"></i> Revenue accurate</li>
+                <li><i class="fas fa-check-circle"></i> Photos sync</li>
+                <li><i class="fas fa-check-circle"></i> Reports generate</li>
+                <li><i class="fas fa-check-circle"></i> No data loss</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p><i class="fas fa-copyright"></i> 2026 AfriNuts Export — Odienné</p>
+        <p>
+            <a href="#"><i class="fas fa-envelope"></i> support</a>
+            <a href="#"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        </p>
+        <p style="font-size: 11px; color: var(--navy);">
+            <i class="fas fa-flask"></i> Internal testing only
+        </p>
+    </div>
+</div>
+</body>
+</html>
