@@ -471,6 +471,124 @@
         </ul>
     </div>
 
+    <!-- Test Data Section -->
+    <div class="data-tables">
+        <h2 style="color: var(--primary); margin-bottom: 16px; font-size: 20px;">
+            <i class="fas fa-database"></i> Test Data Entry
+        </h2>
+
+        <!-- Phase 2: Block Management -->
+        <div class="phase">
+            <h4><i class="fas fa-cubes"></i> PHASE 2: 35 Blocks (A1-E7)</h4>
+            <p style="font-size: 13px; margin-bottom: 10px;">Stagger planting dates by row:</p>
+            <div class="table-container">
+                <table>
+                    <tr><th>Row</th><th>Blocks</th><th>Status</th><th>Planting</th></tr>
+                    <tr><td>A</td><td>A1-A7</td><td>Planted</td><td>Week 1</td></tr>
+                    <tr><td>B</td><td>B1-B7</td><td>Planted</td><td>Week 2</td></tr>
+                    <tr><td>C</td><td>C1-C7</td><td>Planted</td><td>Week 3</td></tr>
+                    <tr><td>D</td><td>D1-D7</td><td>Planted</td><td>Week 4</td></tr>
+                    <tr><td>E</td><td>E1-E7</td><td>Planted</td><td>Week 5</td></tr>
+                </table>
+            </div>
+            <p style="font-size: 12px; margin-top: 8px; color: var(--navy);">
+                <i class="fas fa-info-circle"></i> Survival rate: 95% avg • Replacements: 2-5 per block
+            </p>
+        </div>
+
+        <!-- Phase 3: Expenses -->
+        <div class="phase">
+            <h4><i class="fas fa-coins"></i> PHASE 3: Expenses</h4>
+            <div class="table-container">
+                <table>
+                    <tr><th>Category</th><th>Amount</th><th>Block</th></tr>
+                    <tr><td>Land Clearing</td><td>1,500,000</td><td>Farm-wide</td></tr>
+                    <tr><td>Fencing</td><td>3,000,000</td><td>Farm-wide</td></tr>
+                    <tr><td>Plowing</td><td>2,000,000</td><td>Farm-wide</td></tr>
+                    <tr><td>Seedlings</td><td>800,000</td><td>Farm-wide</td></tr>
+                    <tr><td>Security</td><td>300,000</td><td>Farm-wide</td></tr>
+                    <tr><td>Irrigation (Jan)</td><td>300,000</td><td>Farm-wide</td></tr>
+                    <tr><td>Weeding (Jan)</td><td>350,000</td><td>Farm-wide</td></tr>
+                    <tr><td>Fertilizer (Feb)</td><td>250,000</td><td>Farm-wide</td></tr>
+                    <tr><td>Pruning (Mar)</td><td>150,000</td><td>Farm-wide</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Phase 4: Tasks -->
+        <div class="phase">
+            <h4><i class="fas fa-tasks"></i> PHASE 4: Tasks</h4>
+            <div class="table-container">
+                <table>
+                    <tr><th>Task</th><th>Block</th><th>Assignee</th><th>Frequency</th></tr>
+                    <tr><td>Weeding</td><td>A blocks</td><td>Worker 1</td><td>Weekly</td></tr>
+                    <tr><td>Fertilizing</td><td>B blocks</td><td>Worker 2</td><td>Monthly</td></tr>
+                    <tr><td>Pruning</td><td>C blocks</td><td>Worker 3</td><td>Quarterly</td></tr>
+                    <tr><td>Pest inspect</td><td>D blocks</td><td>Worker 1</td><td>Bi-weekly</td></tr>
+                    <tr><td>Irrigation</td><td>E blocks</td><td>Worker 2</td><td>Daily</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Phase 5: Revenue -->
+        <div class="phase">
+            <h4><i class="fas fa-chart-line"></i> PHASE 5: Revenue 2026</h4>
+            <div class="table-container">
+                <table>
+                    <tr><th>Blocks</th><th>Harvest</th><th>kg/block</th><th>Price</th><th>Quality</th></tr>
+                    <tr><td>A1-A7</td><td>Apr</td><td>500</td><td>1,500</td><td>Premium</td></tr>
+                    <tr><td>B1-B7</td><td>Apr</td><td>450</td><td>1,500</td><td>Premium</td></tr>
+                    <tr><td>C1-C7</td><td>May</td><td>300</td><td>1,450</td><td>Standard</td></tr>
+                    <tr><td>D1-D7</td><td>May</td><td>280</td><td>1,450</td><td>Standard</td></tr>
+                    <tr><td>E1-E7</td><td>Jun</td><td>250</td><td>1,400</td><td>Standard</td></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Timeline -->
+    <div class="test-plan">
+        <h2 style="color: var(--primary); margin-bottom: 16px; font-size: 20px;">
+            <i class="fas fa-calendar-alt"></i> Testing Timeline
+        </h2>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="date">Week 1</div>
+                <div>Setup & Blocks</div>
+            </div>
+            <div class="timeline-item">
+                <div class="date">Week 2</div>
+                <div>Expenses</div>
+            </div>
+            <div class="timeline-item">
+                <div class="date">Week 3</div>
+                <div>Revenue</div>
+            </div>
+            <div class="timeline-item">
+                <div class="date">Week 4</div>
+                <div>Tasks</div>
+            </div>
+            <div class="timeline-item">
+                <div class="date">Week 5</div>
+                <div>Reports</div>
+            </div>
+        </div>
+
+        <!-- Success Criteria -->
+        <div class="success-box">
+            <h4><i class="fas fa-clipboard-check"></i> Success Criteria</h4>
+            <ul>
+                <li><i class="fas fa-check-circle"></i> All 35 blocks trackable</li>
+                <li><i class="fas fa-check-circle"></i> Expenses match budget</li>
+                <li><i class="fas fa-check-circle"></i> Revenue accurate</li>
+                <li><i class="fas fa-check-circle"></i> Photos sync</li>
+                <li><i class="fas fa-check-circle"></i> Reports generate</li>
+                <li><i class="fas fa-check-circle"></i> No data loss</li>
+            </ul>
+        </div>
+    </div>
+
     <!-- Footer -->
     <div class="footer">
         <p><i class="fas fa-copyright"></i> 2026 AfriNuts Export — Odienné, Côte d'Ivoire</p>
