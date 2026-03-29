@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>AfriNuts Farm OS - Internal Testing</title>
+    <title>AfriNuts Farm OS - Farm Management System</title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
@@ -131,7 +131,7 @@
             word-break: break-all;
         }
 
-        /* Features Grid - Mobile Optimized */
+        /* Features Grid */
         .features {
             display: grid;
             grid-template-columns: 1fr;
@@ -176,15 +176,20 @@
             line-height: 1.4;
         }
 
-        /* Test Plan Section */
-        .test-plan, .data-tables {
+        .card {
             background: white;
             border-radius: 16px;
             padding: 20px 16px;
             margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
 
-        /* Security Note */
+        .card h2 {
+            color: var(--primary);
+            margin-bottom: 16px;
+            font-size: 20px;
+        }
+
         .security-note {
             background: var(--primary-light);
             border-left: 4px solid var(--accent);
@@ -198,18 +203,44 @@
             color: var(--accent);
         }
 
-        .card {
-            background: white;
-            border-radius: 16px;
-            padding: 20px 16px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        .table-container {
+            overflow-x: auto;
+            margin: 16px -16px;
+            padding: 0 16px;
+            -webkit-overflow-scrolling: touch;
         }
 
-        .card h2 {
-            color: var(--primary);
-            margin-bottom: 16px;
-            font-size: 20px;
+        table {
+            min-width: 600px;
+            border-collapse: collapse;
+            font-size: 13px;
+            background: white;
+            width: 100%;
+        }
+
+        @media (max-width: 480px) {
+            table {
+                min-width: 100%;
+                font-size: 12px;
+            }
+        }
+
+        th {
+            background: var(--primary);
+            color: white;
+            padding: 10px 8px;
+            text-align: left;
+            font-weight: 500;
+            font-size: 12px;
+        }
+
+        td {
+            padding: 8px;
+            border-bottom: 1px solid var(--warm-grey);
+        }
+
+        tr:hover {
+            background: var(--primary-light);
         }
 
         .phase {
@@ -245,101 +276,6 @@
             left: 0;
         }
 
-        /* Mobile-Optimized Tables */
-        .table-container {
-            overflow-x: auto;
-            margin: 16px -16px;
-            padding: 0 16px;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        table {
-            min-width: 600px;
-            border-collapse: collapse;
-            font-size: 13px;
-            background: white;
-        }
-
-        @media (max-width: 480px) {
-            table {
-                min-width: 100%;
-                font-size: 12px;
-            }
-
-            .table-container {
-                margin: 12px -12px;
-                padding: 0 12px;
-            }
-        }
-
-        th {
-            background: var(--primary);
-            color: white;
-            padding: 10px 8px;
-            text-align: left;
-            font-weight: 500;
-            font-size: 12px;
-            white-space: nowrap;
-        }
-
-        td {
-            padding: 8px;
-            border-bottom: 1px solid var(--warm-grey);
-            white-space: nowrap;
-        }
-
-        tr:hover {
-            background: var(--primary-light);
-        }
-
-        .table-caption {
-            color: var(--navy);
-            font-weight: 600;
-            margin-top: 20px;
-            margin-bottom: 8px;
-            font-size: 15px;
-        }
-
-        /* Timeline - Mobile Optimized */
-        .timeline {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 8px;
-            margin: 16px 0;
-        }
-
-        @media (min-width: 480px) {
-            .timeline {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        @media (min-width: 768px) {
-            .timeline {
-                grid-template-columns: repeat(5, 1fr);
-            }
-        }
-
-        .timeline-item {
-            text-align: center;
-            padding: 12px 8px;
-            background: var(--warm-grey);
-            border-radius: 8px;
-            border-bottom: 2px solid var(--primary);
-        }
-
-        .timeline-item .date {
-            font-weight: 600;
-            color: var(--primary);
-            font-size: 13px;
-            margin-bottom: 4px;
-        }
-
-        .timeline-item div:last-child {
-            font-size: 12px;
-        }
-
-        /* Success Criteria */
         .success-box {
             background: var(--accent);
             color: white;
@@ -376,7 +312,6 @@
             color: white;
         }
 
-        /* Footer */
         .footer {
             text-align: center;
             color: var(--navy);
@@ -398,11 +333,6 @@
             display: inline-block;
         }
 
-        .footer a:hover {
-            text-decoration: underline;
-        }
-
-        /* Touch-friendly buttons */
         button,
         .download-button,
         a {
@@ -411,13 +341,6 @@
             align-items: center;
             justify-content: center;
         }
-
-        /* Spacing helpers */
-        .mb-1 { margin-bottom: 8px; }
-        .mb-2 { margin-bottom: 16px; }
-        .mb-3 { margin-bottom: 24px; }
-        .mt-1 { margin-top: 8px; }
-        .mt-2 { margin-top: 16px; }
     </style>
 </head>
 <body>
@@ -428,70 +351,73 @@
             <i class="fas fa-seedling"></i>
         </div>
         <h1>AfriNuts Farm OS</h1>
-        <div class="version">Version 1.0.0</div>
-        <div class="badge"><i class="fas fa-flask"></i> Internal Testing</div>
+        <div class="version">Version 1.1.0</div>
+        <div class="badge"><i class="fas fa-check-circle"></i> Production Ready</div>
         <p style="max-width: 600px; margin: 12px auto; opacity: 0.9; font-size: 14px;">
-            Complete farm management for cashew plantations
+            Complete farm management system with offline-first sync
         </p>
     </div>
 
     <!-- Download Card -->
     <div class="download-card">
         <h2 style="margin-bottom: 12px; font-size: 20px;"><i class="fas fa-download"></i> Download for Android</h2>
-        <p style="margin-bottom: 16px; font-size: 13px;"><i class="fas fa-mobile-alt"></i> APK: 8.2 MB | Android 7.0+</p>
-        <a href="https://hamza-hub320.github.io/afrinuts-farm-os/downloads/afrinuts-farm-os-v1.0.apk"
+        <p style="margin-bottom: 16px; font-size: 13px;"><i class="fas fa-mobile-alt"></i> APK: ~10 MB | Android 7.0+</p>
+        <a href="https://hamza-hub320.github.io/afrinuts-farm-os/downloads/afrinuts-farm-os-v1.1.apk"
            class="download-button" download>
-
-            <i class="fas fa-download"></i> Download APK (8.2 MB)
+            <i class="fas fa-download"></i> Download APK v1.1.0
         </a>
-        <p class="file-info"><i class="fas fa-shield-alt"></i> SHA-256: a1b2c3d4e5f6g7h8i9j0...</p>
+        <p class="file-info"><i class="fas fa-shield-alt"></i> SHA-256: Run `shasum -a 256 afrinuts-farm-os-v1.1.apk` after download</p>
     </div>
 
     <!-- Features Grid -->
     <h2 style="color: var(--primary); margin-bottom: 12px; font-size: 20px;">
-        <i class="fas fa-star"></i> Features
+        <i class="fas fa-star"></i> What's New in v1.1.0
     </h2>
     <div class="features">
         <div class="feature-card">
-            <div class="feature-icon"><i class="fas fa-cubes"></i></div>
-            <h3>Block Management</h3>
-            <p>35 blocks (A1-E7) with survival rates & dates</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon"><i class="fas fa-coins"></i></div>
-            <h3>Financial Tracking</h3>
-            <p>Expenses, revenue & per-block profit</p>
+            <div class="feature-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+            <h3>Cloud Sync</h3>
+            <p>Multi-device sync with Firebase</p>
         </div>
         <div class="feature-card">
             <div class="feature-icon"><i class="fas fa-users"></i></div>
-            <h3>Team Management</h3>
-            <p>Role-based access (owner/manager/worker)</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon"><i class="fas fa-camera"></i></div>
-            <h3>Photo Docs</h3>
-            <p>Attach photos to blocks & tasks</p>
+            <h3>Role-Based Access</h3>
+            <p>Owner, Manager, Worker, Investor</p>
         </div>
         <div class="feature-card">
             <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
-            <h3>Analytics</h3>
-            <p>PDF reports & profit dashboard</p>
+            <h3>Profit Dashboard</h3>
+            <p>Real-time profit calculations</p>
         </div>
         <div class="feature-card">
-            <div class="feature-icon"><i class="fas fa-cloud-upload-alt"></i></div>
-            <h3>Auto-Sync</h3>
-            <p>Offline-first with cloud backup</p>
+            <div class="feature-icon"><i class="fas fa-camera"></i></div>
+            <h3>Photo Sync</h3>
+            <p>Cloud backup for all photos</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-file-pdf"></i></div>
+            <h3>PDF Reports</h3>
+            <p>Professional financial reports</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-chart-pie"></i></div>
+            <h3>Analytics</h3>
+            <p>Yield predictions & trends</p>
         </div>
     </div>
 
-    <!-- 🔐 TEAM CREDENTIALS SECTION - NEW -->
+    <!-- Team Credentials -->
     <div class="card">
-        <h2><i class="fas fa-users-cog"></i> 👥 Team Credentials</h2>
+        <h2><i class="fas fa-users-cog"></i> Team Access</h2>
 
-        <!-- Security Note -->
         <div class="security-note">
-            <strong><i class="fas fa-shield-alt"></i> ⚠️ First Time Users:</strong> After installing, open the app and select your name from the list.
-            If you don't see your name, contact the farm owner to create your account.
+            <strong><i class="fas fa-shield-alt"></i> First Time Login:</strong>
+            <ol style="margin-top: 8px; margin-left: 20px;">
+                <li>Install the APK on your Android device (7.0+)</li>
+                <li>Open the app and select your name from the list</li>
+                <li>Enter your email and temporary password</li>
+                <li>Change your password immediately after login</li>
+            </ol>
         </div>
 
         <div class="table-container">
@@ -502,29 +428,29 @@
                     <th style="padding: 0.75rem; text-align: left;">Role</th>
                 </tr>
                 <tr>
-                    <td style="padding: 0.5rem; border-bottom: 1px solid #ddd;"><i class="fas fa-crown" style="color: var(--primary);"></i> Farm Owner</td>
-                    <td style="padding: 0.5rem; border-bottom: 1px solid #ddd;">owner@afrinuts.com</td>
-                    <td style="padding: 0.5rem; border-bottom: 1px solid #ddd;"><i class="fas fa-crown" style="color: var(--primary);"></i> Owner</td>
+                    <td style="padding: 0.5rem; border-bottom: 1px solid #ddd;"><i class="fas fa-crown" style="color: var(--primary);"></i> Hamza Sangare</td>
+                    <td style="padding: 0.5rem; border-bottom: 1px solid #ddd;">hamza@afrinuts.com</td>
+                    <td style="padding: 0.5rem; border-bottom: 1px solid #ddd;">CEO</td>
                 </tr>
                 <tr>
-                    <td style="padding: 0.5rem; border-bottom: 1px solid #ddd;"><i class="fas fa-user-tie" style="color: var(--navy);"></i> Sekou Hakim</td>
+                    <td style="padding: 0.5rem; border-bottom: 1px solid #ddd;"><i class="fas fa-user-tie"></i> Sekou Hakim</td>
                     <td style="padding: 0.5rem; border-bottom: 1px solid #ddd;">sekou@afrinuts.com</td>
-                    <td style="padding: 0.5rem; border-bottom: 1px solid #ddd;"><i class="fas fa-clipboard-list" style="color: var(--navy);"></i> COO</td>
+                    <td style="padding: 0.5rem; border-bottom: 1px solid #ddd;">COO</td>
                 </tr>
                 <tr>
-                    <td style="padding: 0.5rem; border-bottom: 1px solid #ddd;"><i class="fas fa-user-tie" style="color: var(--navy);"></i> Mohammadue A. Kouyate</td>
+                    <td style="padding: 0.5rem; border-bottom: 1px solid #ddd;"><i class="fas fa-user-tie"></i> Mohammadue A. Kouyate</td>
                     <td style="padding: 0.5rem; border-bottom: 1px solid #ddd;">mohammadue@afrinuts.com</td>
-                    <td style="padding: 0.5rem; border-bottom: 1px solid #ddd;"><i class="fas fa-chart-bar" style="color: var(--navy);"></i> CCO</td>
+                    <td style="padding: 0.5rem; border-bottom: 1px solid #ddd;">CCO</td>
                 </tr>
                 <tr>
-                    <td style="padding: 0.5rem; border-bottom: 1px solid #ddd;"><i class="fas fa-user-tie" style="color: var(--navy);"></i> Alassan Bah</td>
-                    <td style="padding: 0.5rem; border-bottom: 1px solid #ddd;">alassan@afrinuts.com</td>
-                    <td style="padding: 0.5rem; border-bottom: 1px solid #ddd;"><i class="fas fa-laptop-code" style="color: var(--navy);"></i> CTO</td>
+                    <td style="padding: 0.5rem; border-bottom: 1px solid #ddd;"><i class="fas fa-user-tie"></i> Alassan Bah</td>
+                    <td style="padding: 0.5rem; border-bottom: 1px solid #ddd;">alassana@afrinuts.com</td>
+                    <td style="padding: 0.5rem; border-bottom: 1px solid #ddd;">CTO</td>
                 </tr>
                 <tr>
-                    <td style="padding: 0.5rem; border-bottom: 1px solid #ddd;"><i class="fas fa-user-tie" style="color: var(--navy);"></i> Mohamed Beniken</td>
+                    <td style="padding: 0.5rem; border-bottom: 1px solid #ddd;"><i class="fas fa-user-tie"></i> Mohamed Beniken</td>
                     <td style="padding: 0.5rem; border-bottom: 1px solid #ddd;">mohamed@afrinuts.com</td>
-                    <td style="padding: 0.5rem; border-bottom: 1px solid #ddd;"><i class="fas fa-building" style="color: var(--navy);"></i> Chief Admin</td>
+                    <td style="padding: 0.5rem; border-bottom: 1px solid #ddd;">Chief Admin</td>
                 </tr>
             </table>
         </div>
@@ -534,133 +460,26 @@
         </p>
     </div>
 
-    <!-- Test Data Section -->
-    <div class="data-tables">
-        <h2 style="color: var(--primary); margin-bottom: 16px; font-size: 20px;">
-            <i class="fas fa-database"></i> Test Data Entry
-        </h2>
-
-        <!-- Phase 2: Block Management -->
-        <div class="phase">
-            <h4><i class="fas fa-cubes"></i> PHASE 2: 35 Blocks (A1-E7)</h4>
-            <p style="font-size: 13px; margin-bottom: 10px;">Stagger planting dates by row:</p>
-            <div class="table-container">
-                <table>
-                    <tr><th>Row</th><th>Blocks</th><th>Status</th><th>Planting</th></tr>
-                    <tr><td>A</td><td>A1-A7</td><td>Planted</td><td>Week 1</td></tr>
-                    <tr><td>B</td><td>B1-B7</td><td>Planted</td><td>Week 2</td></tr>
-                    <tr><td>C</td><td>C1-C7</td><td>Planted</td><td>Week 3</td></tr>
-                    <tr><td>D</td><td>D1-D7</td><td>Planted</td><td>Week 4</td></tr>
-                    <tr><td>E</td><td>E1-E7</td><td>Planted</td><td>Week 5</td></tr>
-                </table>
-            </div>
-            <p style="font-size: 12px; margin-top: 8px; color: var(--navy);">
-                <i class="fas fa-info-circle"></i> Survival rate: 95% avg • Replacements: 2-5 per block
-            </p>
-        </div>
-
-        <!-- Phase 3: Expenses -->
-        <div class="phase">
-            <h4><i class="fas fa-coins"></i> PHASE 3: Expenses</h4>
-            <div class="table-container">
-                <table>
-                    <tr><th>Category</th><th>Amount</th><th>Block</th></tr>
-                    <tr><td>Land Clearing</td><td>1,500,000</td><td>Farm-wide</td></tr>
-                    <tr><td>Fencing</td><td>3,000,000</td><td>Farm-wide</td></tr>
-                    <tr><td>Plowing</td><td>2,000,000</td><td>Farm-wide</td></tr>
-                    <tr><td>Seedlings</td><td>800,000</td><td>Farm-wide</td></tr>
-                    <tr><td>Security</td><td>300,000</td><td>Farm-wide</td></tr>
-                    <tr><td>Irrigation (Jan)</td><td>300,000</td><td>Farm-wide</td></tr>
-                    <tr><td>Weeding (Jan)</td><td>350,000</td><td>Farm-wide</td></tr>
-                    <tr><td>Fertilizer (Feb)</td><td>250,000</td><td>Farm-wide</td></tr>
-                    <tr><td>Pruning (Mar)</td><td>150,000</td><td>Farm-wide</td></tr>
-                </table>
-            </div>
-        </div>
-
-        <!-- Phase 4: Tasks -->
-        <div class="phase">
-            <h4><i class="fas fa-tasks"></i> PHASE 4: Tasks</h4>
-            <div class="table-container">
-                <table>
-                    <tr><th>Task</th><th>Block</th><th>Assignee</th><th>Frequency</th></tr>
-                    <tr><td>Weeding</td><td>A blocks</td><td>Worker 1</td><td>Weekly</td></tr>
-                    <tr><td>Fertilizing</td><td>B blocks</td><td>Worker 2</td><td>Monthly</td></tr>
-                    <tr><td>Pruning</td><td>C blocks</td><td>Worker 3</td><td>Quarterly</td></tr>
-                    <tr><td>Pest inspect</td><td>D blocks</td><td>Worker 1</td><td>Bi-weekly</td></tr>
-                    <tr><td>Irrigation</td><td>E blocks</td><td>Worker 2</td><td>Daily</td></tr>
-                </table>
-            </div>
-        </div>
-
-        <!-- Phase 5: Revenue -->
-        <div class="phase">
-            <h4><i class="fas fa-chart-line"></i> PHASE 5: Revenue 2026</h4>
-            <div class="table-container">
-                <table>
-                    <tr><th>Blocks</th><th>Harvest</th><th>kg/block</th><th>Price</th><th>Quality</th></tr>
-                    <tr><td>A1-A7</td><td>Apr</td><td>500</td><td>1,500</td><td>Premium</td></tr>
-                    <tr><td>B1-B7</td><td>Apr</td><td>450</td><td>1,500</td><td>Premium</td></tr>
-                    <tr><td>C1-C7</td><td>May</td><td>300</td><td>1,450</td><td>Standard</td></tr>
-                    <tr><td>D1-D7</td><td>May</td><td>280</td><td>1,450</td><td>Standard</td></tr>
-                    <tr><td>E1-E7</td><td>Jun</td><td>250</td><td>1,400</td><td>Standard</td></tr>
-                </table>
-            </div>
-        </div>
-    </div>
-
-    <!-- Timeline -->
-    <div class="test-plan">
-        <h2 style="color: var(--primary); margin-bottom: 16px; font-size: 20px;">
-            <i class="fas fa-calendar-alt"></i> Testing Timeline
-        </h2>
-
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="date">Week 1</div>
-                <div>Setup & Blocks</div>
-            </div>
-            <div class="timeline-item">
-                <div class="date">Week 2</div>
-                <div>Expenses</div>
-            </div>
-            <div class="timeline-item">
-                <div class="date">Week 3</div>
-                <div>Revenue</div>
-            </div>
-            <div class="timeline-item">
-                <div class="date">Week 4</div>
-                <div>Tasks</div>
-            </div>
-            <div class="timeline-item">
-                <div class="date">Week 5</div>
-                <div>Reports</div>
-            </div>
-        </div>
-
-        <!-- Success Criteria -->
-        <div class="success-box">
-            <h4><i class="fas fa-clipboard-check"></i> Success Criteria</h4>
-            <ul>
-                <li><i class="fas fa-check-circle"></i> All 35 blocks trackable</li>
-                <li><i class="fas fa-check-circle"></i> Expenses match budget</li>
-                <li><i class="fas fa-check-circle"></i> Revenue accurate</li>
-                <li><i class="fas fa-check-circle"></i> Photos sync</li>
-                <li><i class="fas fa-check-circle"></i> Reports generate</li>
-                <li><i class="fas fa-check-circle"></i> No data loss</li>
-            </ul>
-        </div>
+    <!-- System Requirements -->
+    <div class="card">
+        <h2><i class="fas fa-mobile-alt"></i> System Requirements</h2>
+        <ul style="list-style: none; padding-left: 0;">
+            <li><i class="fas fa-check-circle" style="color: var(--primary);"></i> Android 7.0 (API 24) or higher</li>
+            <li><i class="fas fa-check-circle" style="color: var(--primary);"></i> 100MB free storage</li>
+            <li><i class="fas fa-check-circle" style="color: var(--primary);"></i> Internet connection for sync (optional offline mode)</li>
+            <li><i class="fas fa-check-circle" style="color: var(--primary);"></i> Camera for photo documentation (optional)</li>
+        </ul>
     </div>
 
     <!-- Footer -->
     <div class="footer">
-        <p><i class="fas fa-copyright"></i> 2026 AfriNuts Export — Odienné</p>
+        <p><i class="fas fa-copyright"></i> 2026 AfriNuts Export — Odienné, Côte d'Ivoire</p>
         <p>
-            <a href="#"><i class="fas fa-envelope"></i> support</a>
+            <a href="mailto:support@afrinuts.com"><i class="fas fa-envelope"></i> support@afrinuts.com</a>
             <a href="#"><i class="fab fa-whatsapp"></i> WhatsApp</a>
         </p>
         <p style="font-size: 11px; color: var(--navy);">
-            <i class="fas fa-flask"></i> Internal testing only
+            <i class="fas fa-check-circle"></i> Offline-first farm management system
         </p>
     </div>
 </div>
